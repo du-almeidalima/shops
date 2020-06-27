@@ -1,4 +1,4 @@
-import {MessageStatus} from "../enums/message-status.enum";
+import {MessageStatus} from '../enums/message-status.enum';
 
 /**
  * The status feedback a component receive upon a notification.
@@ -8,7 +8,7 @@ import {MessageStatus} from "../enums/message-status.enum";
  * @property {MessageStatus} status Enum to represent the possible status.
  */
 export interface ResponseMessage {
-  title?: string
+  title?: string;
   message: string;
   status: MessageStatus;
 }

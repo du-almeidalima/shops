@@ -1,4 +1,4 @@
-import {Directive, ElementRef, HostListener, Input, Renderer2} from "@angular/core";
+import {Directive, ElementRef, HostListener, Input, Renderer2} from '@angular/core';
 
 @Directive({ selector: '[appDropdown]'})
 export class DropdownDirective {
@@ -18,7 +18,7 @@ export class DropdownDirective {
   }
 
   // For closing the Dropdown from Anywhere
-  @HostListener('document:click',['$event'])
+  @HostListener('document:click', ['$event'])
   public onOuterClick(event: Event){
 
     if (! this.elRef.nativeElement.contains(event.target)){

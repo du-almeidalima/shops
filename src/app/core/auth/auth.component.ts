@@ -1,11 +1,11 @@
-import {Component, ComponentFactoryResolver, OnDestroy, OnInit, ViewChild} from "@angular/core";
-import {NgForm} from "@angular/forms";
-import {Store} from "@ngrx/store";
-import {Subscription} from "rxjs";
+import {Component, ComponentFactoryResolver, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {NgForm} from '@angular/forms';
+import {Store} from '@ngrx/store';
+import {Subscription} from 'rxjs';
 
-import {ResponseMessage} from "../../shared/models/response-message.model";
-import {FeedbackMessageComponent} from "../../shared/components/feedback-message/feedback-message.component";
-import {PlaceholderDirective} from "../../shared/directives/placeholder.directive";
+import {ResponseMessage} from '../../shared/models/response-message.model';
+import {FeedbackMessageComponent} from '../../shared/components/feedback-message/feedback-message.component';
+import {PlaceholderDirective} from '../../shared/directives/placeholder.directive';
 import * as fromApp from '../../store/app.reducer';
 import * as AuthActions from '../auth/store/auth.actions';
 
@@ -19,7 +19,7 @@ export class AuthComponent implements OnDestroy, OnInit{
   public isLoginMode = true;
   public isLoading = false;
   public footerMessage: [string, string] = ['New here?', 'Create an account'];
-  public buttonMessage: string = 'Log In';
+  public buttonMessage = 'Log In';
   private messageFeedbackSubscription: Subscription;
   private storeSubscription: Subscription;
   @ViewChild(PlaceholderDirective)
@@ -32,9 +32,9 @@ export class AuthComponent implements OnDestroy, OnInit{
     this.storeSubscription = this.store.select('auth').subscribe(authState => {
       this.isLoading = authState.isLoading;
       if (authState.authError) {
-        this.showErrorFeedBackMessage(authState.authError)
+        this.showErrorFeedBackMessage(authState.authError);
       }
-    })
+    });
   }
 
   ngOnDestroy(): void {
@@ -54,7 +54,7 @@ export class AuthComponent implements OnDestroy, OnInit{
       ['Already have an account?', 'Sign in'];
     this.buttonMessage = this.isLoginMode ?
       'Sign in' :
-      'Sign up'
+      'Sign up';
   }
 
   public handleFormSubmission(form: NgForm): void {
@@ -93,7 +93,7 @@ export class AuthComponent implements OnDestroy, OnInit{
         this.messageFeedbackSubscription.unsubscribe();
         this.store.dispatch(new AuthActions.ClearError());
         hostViewContainerRef.clear();
-      })
+      });
   }
 }
 

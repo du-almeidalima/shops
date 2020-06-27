@@ -1,12 +1,12 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {AbstractControl, FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
-import {Subscription} from "rxjs";
-import {Store} from "@ngrx/store";
+import {Subscription} from 'rxjs';
+import {Store} from '@ngrx/store';
 // @ts-ignore
 import FOOD_PLACEHOLDER from '../../../../assets/img/food-placeholder.jpg';
 import {Ingredient} from '../../../shared/models/ingredient.model';
-import {Recipe} from "../../../shared/models/recipe.model";
+import {Recipe} from '../../../shared/models/recipe.model';
 import * as fromApp from '../../../store/app.reducer';
 import * as RecipeActions from '../store/recipes.actions';
 
@@ -38,22 +38,22 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.route.params.subscribe(
-      (params:Params) => {
+      (params: Params) => {
         this.id = +params.id;
         this.storeSubscription = this.store.select('recipes')
           .subscribe(recipesState => {
             // If the URL contains the id then it's editing, otherwise it's a new recipe
             if (this.id) {
-              this.isEditMode = true
-              this.currentRecipe = recipesState.recipes.find(r => r.id === this.id)
+              this.isEditMode = true;
+              this.currentRecipe = recipesState.recipes.find(r => r.id === this.id);
             } else {
               this.isEditMode = false;
-              this.currentRecipe = new Recipe( null,'', '', this.FOOD_PLACEHOLDER, [new Ingredient('', 0)]);
+              this.currentRecipe = new Recipe( null, '', '', this.FOOD_PLACEHOLDER, [new Ingredient('', 0)]);
               this.imgPlaceholder = true;
             }
 
             this.initForm(this.currentRecipe);
-          })
+          });
       }
     );
   }
@@ -70,16 +70,16 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
     const recipe = new Recipe(this.id, name, description, imagePath, ingredients);
 
     if (this.isEditMode){
-      this.store.dispatch(new RecipeActions.UpdateRecipe(recipe))
+      this.store.dispatch(new RecipeActions.UpdateRecipe(recipe));
     } else {
-      this.store.dispatch(new RecipeActions.AddRecipe(recipe))
+      this.store.dispatch(new RecipeActions.AddRecipe(recipe));
     }
 
     this.router.navigate(['recipes']);
   }
 
   public onCancel(): void {
-    this.router.navigate(['recipes'])
+    this.router.navigate(['recipes']);
   }
 
   public onAddIngredient(): void {
@@ -108,14 +108,14 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
         return new FormGroup({
           name: new FormControl(ing.name, Validators.required),
           amount: new FormControl(ing.amount, [Validators.required, Validators.pattern(/^[1-9]+[0-9]*$/)])
-        })
+        });
       }))
     });
 
     // On Image Change
     this.imgPath.valueChanges.subscribe(data => {
       this.imgPlaceholder = data === null || data.trim() === '';
-    })
+    });
   }
 }
 

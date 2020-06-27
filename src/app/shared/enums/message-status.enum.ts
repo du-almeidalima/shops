@@ -1,8 +1,8 @@
 export enum MessageStatus {
-  ERROR = "ERROR",
-  SUCCESS = "SUCCESS",
-  WARNING = "WARNING",
-  INFO = "INFO"
+  ERROR = 'ERROR',
+  SUCCESS = 'SUCCESS',
+  WARNING = 'WARNING',
+  INFO = 'INFO'
 }
 
 export namespace MessageStatus {
@@ -15,7 +15,7 @@ export namespace MessageStatus {
   export function mapMessageStatusToCssClass(messageStatus: MessageStatus): string {
     switch (messageStatus) {
       case MessageStatus.ERROR:
-        return 'alert-danger'
+        return 'alert-danger';
       case MessageStatus.WARNING:
         return 'alert-warning';
       case MessageStatus.SUCCESS:

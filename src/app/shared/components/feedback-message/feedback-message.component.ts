@@ -1,6 +1,6 @@
-import {Component, ElementRef, EventEmitter, Input, OnInit, Output, Renderer2, ViewChild} from "@angular/core";
-import {ResponseMessage} from "../../models/response-message.model";
-import {MessageStatus} from "../../enums/message-status.enum";
+import {Component, ElementRef, EventEmitter, Input, OnInit, Output, Renderer2, ViewChild} from '@angular/core';
+import {ResponseMessage} from '../../models/response-message.model';
+import {MessageStatus} from '../../enums/message-status.enum';
 
 @Component({
   selector: 'app-feedback-message',
@@ -30,8 +30,8 @@ export class FeedbackMessageComponent implements OnInit{
   public closeAlert(): void {
     this.renderer2.removeClass(this.alertContainer.nativeElement, 'show');
     setTimeout(() => {
-      this.messageDismiss.emit()
-    }, 150)
+      this.messageDismiss.emit();
+    }, 150);
   }
 }
 

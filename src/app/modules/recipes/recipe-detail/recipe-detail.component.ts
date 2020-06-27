@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Params, Router} from '@angular/router';
-import {Store} from "@ngrx/store";
-import {map, switchMap} from "rxjs/operators";
+import {Store} from '@ngrx/store';
+import {map, switchMap} from 'rxjs/operators';
 
 import {Recipe} from '../../../shared/models/recipe.model';
 import * as fromApp from '../../../store/app.reducer';
@@ -28,18 +28,18 @@ export class RecipeDetailComponent implements OnInit {
     this.route.params
       .pipe(
         map((params: Params) => {
-          return +params.id
+          return +params.id;
         }),
         switchMap(id => {
           return this.store.select('recipes')
             .pipe(
               map(recipesState => recipesState.recipes.find(r => r.id === id))
-            )
+            );
         })
       )
       .subscribe(recipe => {
-        this.selectedRecipe = recipe
-      })
+        this.selectedRecipe = recipe;
+      });
   }
 
   // Methods
@@ -60,7 +60,7 @@ export class RecipeDetailComponent implements OnInit {
   }
 
   public onRemoveRecipe(): void {
-    this.store.dispatch(new RecipeActions.DeleteRecipe(this.selectedRecipe.id))
+    this.store.dispatch(new RecipeActions.DeleteRecipe(this.selectedRecipe.id));
     this.router.navigate(['recipes']);
   }
 

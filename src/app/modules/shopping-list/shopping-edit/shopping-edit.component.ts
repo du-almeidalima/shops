@@ -1,11 +1,11 @@
 import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {NgForm} from '@angular/forms';
-import {Store} from "@ngrx/store";
+import {Store} from '@ngrx/store';
 import {Subscription} from 'rxjs';
 
 import {Ingredient} from '../../../shared/models/ingredient.model';
 /* This is the convention for importing the reducer file */
-import * as fromApp from '../../../store/app.reducer'
+import * as fromApp from '../../../store/app.reducer';
 import * as ShoppingListActions from '../store/shopping-list.actions';
 
 @Component({
@@ -28,7 +28,7 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
           this.ingredientForm.setValue({
             name: stateData.editedIngredient.name,
             amount: stateData.editedIngredient.amount
-          })
+          });
         } else {
           this.editMode = false;
         }
@@ -66,7 +66,7 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
   // Utils
   private clearForm(): void{
     this.editMode = false;
-    this.ingredientForm.reset()
+    this.ingredientForm.reset();
   }
 }
 

@@ -1,5 +1,5 @@
-import {ResponseMessage} from "../models/response-message.model";
-import {MessageStatus} from "../enums/message-status.enum";
+import {ResponseMessage} from '../models/response-message.model';
+import {MessageStatus} from '../enums/message-status.enum';
 // @ts-ignore
 import jsonMessages from '../status-messages.json';
 
@@ -31,11 +31,11 @@ export abstract class MessageMapper{
       return {
         message: jsonMessage.message,
         status: MessageStatus[jsonMessage.severity.toString()]
-      }
+      };
     }
     return {
       message: 'Something wrong happened',
       status: MessageStatus.WARNING
-    }
+    };
   }
 }

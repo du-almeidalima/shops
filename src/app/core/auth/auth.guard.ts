@@ -1,9 +1,9 @@
-import {Injectable} from "@angular/core";
-import {ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree} from "@angular/router";
-import {Store} from "@ngrx/store";
+import {Injectable} from '@angular/core';
+import {ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree} from '@angular/router';
+import {Store} from '@ngrx/store';
 
-import {Observable} from "rxjs";
-import {map, take} from "rxjs/operators";
+import {Observable} from 'rxjs';
+import {map, take} from 'rxjs/operators';
 
 import * as fromApp from '../../store/app.reducer';
 
@@ -20,6 +20,6 @@ export class AuthGuard implements CanActivate {
         map(authState => {
           return !!authState.user;
         })
-      )
+      );
   }
 }

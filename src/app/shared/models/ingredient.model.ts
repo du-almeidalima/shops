@@ -1,5 +1,5 @@
 export class Ingredient {
-  constructor(public name: string, public amount: number){};
+  constructor(public name: string, public amount: number){}
 }
 
 /** Since ingredient will be used in both Shopping List and Recipes we'll create a folder called "shared" to hold it

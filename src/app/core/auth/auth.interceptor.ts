@@ -1,9 +1,9 @@
-import {Injectable} from "@angular/core";
-import {HttpEvent, HttpHandler, HttpInterceptor, HttpParams, HttpRequest} from "@angular/common/http";
-import {Store} from "@ngrx/store";
+import {Injectable} from '@angular/core';
+import {HttpEvent, HttpHandler, HttpInterceptor, HttpParams, HttpRequest} from '@angular/common/http';
+import {Store} from '@ngrx/store';
 
-import {Observable} from "rxjs";
-import {exhaustMap, map, take} from "rxjs/operators";
+import {Observable} from 'rxjs';
+import {exhaustMap, map, take} from 'rxjs/operators';
 
 import * as fromApp from '../../store/app.reducer';
 
@@ -17,7 +17,7 @@ export class AuthInterceptor implements HttpInterceptor {
       .pipe(
         take(1),
         map(authState => {
-          return authState.user
+          return authState.user;
         }),
         // Swapping the userAuthObservable for the request Observable
         exhaustMap(user => {

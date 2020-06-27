@@ -1,10 +1,10 @@
-import {Component, OnDestroy, OnInit} from "@angular/core";
-import {Store} from "@ngrx/store";
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Store} from '@ngrx/store';
 
-import {Subscription} from "rxjs";
-import {map} from "rxjs/operators";
+import {Subscription} from 'rxjs';
+import {map} from 'rxjs/operators';
 
-import {User} from "../auth/user.model";
+import {User} from '../auth/user.model';
 import * as fromApp from '../../store/app.reducer';
 import * as AuthActions from '../auth/store/auth.actions';
 import * as RecipesActions from '../../modules/recipes/store/recipes.actions';
@@ -28,7 +28,7 @@ export class HeaderComponent implements OnInit, OnDestroy{
   }
 
   public onLogOut(): void {
-    this.store.dispatch(new AuthActions.LogOut())
+    this.store.dispatch(new AuthActions.LogOut());
   }
 
   ngOnInit(): void {
@@ -37,7 +37,7 @@ export class HeaderComponent implements OnInit, OnDestroy{
       .subscribe((user: User) => {
         // user ? true : false
         this.isUserAuthenticated = !!user;
-      })
+      });
   }
 
   ngOnDestroy(): void {

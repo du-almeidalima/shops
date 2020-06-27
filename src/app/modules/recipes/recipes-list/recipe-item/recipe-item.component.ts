@@ -23,7 +23,7 @@ export class RecipeItemComponent implements OnInit {
   }
 
   public imgError(): void {
-    this.renderer.setAttribute(this.recipeImg.nativeElement, 'src', FOOD_PLACEHOLDER)
+    this.renderer.setAttribute(this.recipeImg.nativeElement, 'src', FOOD_PLACEHOLDER);
   }
 
 }

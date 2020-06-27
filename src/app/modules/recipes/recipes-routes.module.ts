@@ -1,11 +1,11 @@
-import {NgModule} from "@angular/core";
-import {RecipesComponent} from "./recipes.component";
-import {AuthGuard} from "../../core/auth/auth.guard";
-import {NoRecipeComponent} from "./no-recipe/no-recipe.component";
-import {RecipeEditComponent} from "./recipe-edit/recipe-edit.component";
-import {RecipeListResolver} from "./recipes-list/recipe-list-resolver.service";
-import {RecipeDetailComponent} from "./recipe-detail/recipe-detail.component";
-import {RouterModule, Routes} from "@angular/router";
+import {NgModule} from '@angular/core';
+import {RecipesComponent} from './recipes.component';
+import {AuthGuard} from '../../core/auth/auth.guard';
+import {NoRecipeComponent} from './no-recipe/no-recipe.component';
+import {RecipeEditComponent} from './recipe-edit/recipe-edit.component';
+import {RecipeListResolver} from './recipes-list/recipe-list-resolver.service';
+import {RecipeDetailComponent} from './recipe-detail/recipe-detail.component';
+import {RouterModule, Routes} from '@angular/router';
 
 const RECIPES_ROUTES: Routes = [
   { path: '', component: RecipesComponent, canActivate: [AuthGuard], children: [
@@ -19,7 +19,7 @@ const RECIPES_ROUTES: Routes = [
       { path: ':id', component: RecipeDetailComponent, resolve: [RecipeListResolver]}
     ]
   }
-]
+];
 
 @NgModule({
   imports: [RouterModule.forChild(RECIPES_ROUTES)],

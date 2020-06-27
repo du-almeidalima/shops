@@ -1,5 +1,5 @@
-import {Action} from "@ngrx/store";
-import {Recipe} from "../../../shared/models/recipe.model";
+import {Action} from '@ngrx/store';
+import {Recipe} from '../../../shared/models/recipe.model';
 
 export const SET_RECIPES = '[Recipes] Set Recipes';
 export const FETCH_RECIPES = '[Recipes] Fetch Recipes';

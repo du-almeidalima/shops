@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Store} from "@ngrx/store";
+import {Store} from '@ngrx/store';
 import * as AuthActions from './core/auth/store/auth.actions';
 
 @Component({

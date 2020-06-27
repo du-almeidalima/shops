@@ -1,13 +1,13 @@
-import {Action} from "@ngrx/store";
-import {User} from "../user.model";
-import {ResponseMessage} from "../../../shared/models/response-message.model";
+import {Action} from '@ngrx/store';
+import {User} from '../user.model';
+import {ResponseMessage} from '../../../shared/models/response-message.model';
 
 export const LOGIN_START = '[Auth] Login Started';
 export const SIGN_UP_START = '[Auth] Sign up Started';
 export const AUTHENTICATE_SUCCESS = '[Auth] Authenticate Success';
 export const AUTHENTICATE_FAIL = '[Auth] Authenticate Fail';
 export const LOGOUT = '[Auth] Logout';
-export const AUTO_LOGIN = '[Auth] Auto Login'
+export const AUTO_LOGIN = '[Auth] Auto Login';
 export const CLEAR_ERROR = '[Auth] Clear Error';
 
 export class LoginStart implements Action {
@@ -49,7 +49,7 @@ export type AuthActions =
   | LogOut
   | SignUpStart
   | ClearError
-  | AutoLogin
+  | AutoLogin;
 
 /*
  * The AUTHENTICATE_SUCCESS and AUTHENTICATE_FAIL actions are being used for both Sign in and Login process.

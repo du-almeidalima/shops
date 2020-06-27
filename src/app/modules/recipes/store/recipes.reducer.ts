@@ -1,13 +1,13 @@
-import {Recipe} from "../../../shared/models/recipe.model";
+import {Recipe} from '../../../shared/models/recipe.model';
 import * as RecipesActions from './recipes.actions';
 
 export interface RecipesState {
-  recipes: Recipe[]
+  recipes: Recipe[];
 }
 
 const initialState: RecipesState = {
   recipes: []
-}
+};
 
 const recipesReducer = (state: RecipesState = initialState, action: RecipesActions.RecipesActions) => {
   switch (action.type) {
@@ -15,23 +15,23 @@ const recipesReducer = (state: RecipesState = initialState, action: RecipesActio
       return {
         ...state,
         recipes: action.payload
-      }
+      };
     case RecipesActions.ADD_RECIPE:
       // Workaround for Generating Id's
       const biggerId = state.recipes
         .map(r => r.id)
         .reduce((lastId, rId) => {
-        return lastId > rId ? lastId : rId
-      }, 0)
+        return lastId > rId ? lastId : rId;
+      }, 0);
       const newRecipe = {
         ...action.payload,
         id: biggerId + 1
-      }
+      };
 
       return {
         ...state,
         recipes: [...state.recipes, newRecipe].sort((a, b) => a.id - b.id)
-      }
+      };
 
     case RecipesActions.UPDATE_RECIPE:
       const recipeIndex = state.recipes.findIndex(r => r.id === action.payload.id);
@@ -41,17 +41,17 @@ const recipesReducer = (state: RecipesState = initialState, action: RecipesActio
       return {
         ...state,
         recipes: updatedRecipes
-      }
+      };
 
     case RecipesActions.DELETE_RECIPE:
       return {
         ...state,
         recipes: state.recipes.filter(r => r.id !== action.payload)
-      }
+      };
 
     default:
       return state;
   }
-}
+};
 
 export { recipesReducer };

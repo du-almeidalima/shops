@@ -1,13 +1,13 @@
-import {Action, createReducer, on} from "@ngrx/store";
+import {Action, createReducer, on} from '@ngrx/store';
 
-import { Ingredient } from "../../../shared/models/ingredient.model";
-import * as ShoppingListActions from "./shopping-list.actions";
+import { Ingredient } from '../../../shared/models/ingredient.model';
+import * as ShoppingListActions from './shopping-list.actions';
 
 /* State Structure */
 export interface ShoppingListState {
-  ingredients: Ingredient[],
-  editedIngredient: Ingredient,
-  editedIngredientIndex: number
+  ingredients: Ingredient[];
+  editedIngredient: Ingredient;
+  editedIngredientIndex: number;
 }
 /* The initial state of this feature */
 const initialState: ShoppingListState = {
@@ -17,7 +17,7 @@ const initialState: ShoppingListState = {
   ],
   editedIngredient: null,
   editedIngredientIndex: -1
-}
+};
 
 /**
  * The reducer will map the action.type and return a new copy of the state with the action specific alterations.
@@ -40,7 +40,7 @@ const shoppingListReducer = createReducer<ShoppingListState, Action>(
       const updatedIngredients = [ ...state.ingredients ];
       updatedIngredients[state.editedIngredientIndex] = ingredient;
 
-      return { ...state, ingredients: updatedIngredients }
+      return { ...state, ingredients: updatedIngredients };
     }
   ),
   on(ShoppingListActions.removeIngredient, state => {
@@ -49,17 +49,17 @@ const shoppingListReducer = createReducer<ShoppingListState, Action>(
       ingredients: [ ...state.ingredients.filter((ig, igIndex) => igIndex !== state.editedIngredientIndex)],
       editedIngredientIndex: -1,
       editedIngredient: null
-    }
+    };
   }),
   on(ShoppingListActions.startEdit, (state, { index }) => {
     return {
       ...state,
       editedIngredient: { ...state.ingredients[index] },
       editedIngredientIndex: index
-    }
+    };
   }),
   on(ShoppingListActions.stopEdit, state => ({ ...state, editedIngredient: null, editedIngredientIndex: -1}))
-)
+);
 
 
 export { shoppingListReducer };

@@ -1,17 +1,17 @@
-import {Injectable} from "@angular/core";
-import {HttpClient, HttpErrorResponse, HttpParams} from "@angular/common/http";
-import {Router} from "@angular/router";
-import {catchError, map, switchMap, tap} from "rxjs/operators";
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpErrorResponse, HttpParams} from '@angular/common/http';
+import {Router} from '@angular/router';
+import {catchError, map, switchMap, tap} from 'rxjs/operators';
 import {Actions, Effect, ofType} from '@ngrx/effects';
-import {of} from "rxjs";
+import {of} from 'rxjs';
 
-import {environment as env} from "../../../../environments/environment";
-import {User} from "../user.model";
-import {MessageMapper} from "../../../shared/utils/message-mapper";
-import {MessageStatus} from "../../../shared/enums/message-status.enum";
-import {AuthResponseData} from "../../../shared/models/firebase/response-data.model";
+import {environment as env} from '../../../../environments/environment';
+import {User} from '../user.model';
+import {MessageMapper} from '../../../shared/utils/message-mapper';
+import {MessageStatus} from '../../../shared/enums/message-status.enum';
+import {AuthResponseData} from '../../../shared/models/firebase/response-data.model';
 import * as AuthActions from './auth.actions';
-import {AuthService} from "../auth.service";
+import {AuthService} from '../auth.service';
 
 /**
  * @author Eduardo Lima
@@ -29,7 +29,7 @@ export class AuthEffects {
   private readonly LOGIN_URL = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword';
   private readonly LS_USER_KEY = 'userData';
 
-  constructor (
+  constructor(
     private actions$: Actions,
     private http: HttpClient,
     private router: Router,
@@ -62,7 +62,7 @@ export class AuthEffects {
             // Creating a new action based on the return from the last Observable
             return of(handleErrorAuthentication(errData));
           })
-        )
+        );
     })
   );
 
@@ -88,9 +88,9 @@ export class AuthEffects {
           catchError((errData: HttpErrorResponse) => {
             return of(handleErrorAuthentication(errData));
           })
-        )
+        );
     })
-  )
+  );
 
   @Effect({dispatch: false})
   authRedirect = this.actions$.pipe(
@@ -100,16 +100,16 @@ export class AuthEffects {
         this.router.navigate(['/home']);
       }
     })
-  )
+  );
 
   @Effect({ dispatch: false })
   authLogout = this.actions$.pipe(
     ofType(AuthActions.LOGOUT),
     tap(() => {
       this.authService.clearLogoutTimer();
-      localStorage.removeItem(this.LS_USER_KEY)
+      localStorage.removeItem(this.LS_USER_KEY);
     })
-  )
+  );
 
   @Effect()
   autoLogin = this.actions$.pipe(
@@ -126,17 +126,17 @@ export class AuthEffects {
           // Starting Session countdown
           this.authService.setLogoutTimer(expirationDuration);
 
-          return new AuthActions.AuthenticateSuccess({ user: user, redirect: false });
+          return new AuthActions.AuthenticateSuccess({ user, redirect: false });
         } else {
           console.info(`User token has expired.`);
-          return { type: 'NULL' }
+          return { type: 'NULL' };
         }
       } else {
         console.info(`Couldn't find any user to auto login.`);
-        return { type: 'NULL' }
+        return { type: 'NULL' };
       }
     })
-  )
+  );
 }
 
 /* HELPER FUNCTIONS */
@@ -147,16 +147,16 @@ function handleAuthentication(resData: AuthResponseData): AuthActions.AuthAction
     // Storing user for Auto login feature
     localStorage.setItem(this.LS_USER_KEY, JSON.stringify(user));
 
-    return new AuthActions.AuthenticateSuccess({ user: user, redirect: true });
+    return new AuthActions.AuthenticateSuccess({ user, redirect: true });
   }
 
 function handleErrorAuthentication(errData: HttpErrorResponse): AuthActions.AuthActions {
   const errorCode = errData?.error?.error?.message;
   const responseMessage = errorCode
     ? MessageMapper.mapMessage(errorCode)
-    : { message: 'A different error message format was received from API', status: MessageStatus.ERROR }
+    : { message: 'A different error message format was received from API', status: MessageStatus.ERROR };
 
-  return new AuthActions.AuthenticateFail(responseMessage)
+  return new AuthActions.AuthenticateFail(responseMessage);
 }
 
 

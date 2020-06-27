@@ -1,9 +1,9 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Store} from "@ngrx/store";
+import {Store} from '@ngrx/store';
 import {Subscription} from 'rxjs';
-import {map} from "rxjs/operators";
+import {map} from 'rxjs/operators';
 import {Recipe} from '../../../shared/models/recipe.model';
-import * as fromApp from "../../../store/app.reducer";
+import * as fromApp from '../../../store/app.reducer';
 
 @Component({
   selector: 'app-recipes-list',

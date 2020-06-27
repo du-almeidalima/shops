@@ -3,7 +3,7 @@ import {Ingredient} from '../../shared/models/ingredient.model';
 import {Observable} from 'rxjs';
 import {Store} from '@ngrx/store';
 
-import * as fromApp from '../../store/app.reducer'
+import * as fromApp from '../../store/app.reducer';
 import * as ShoppingListActions from './store/shopping-list.actions';
 
 @Component({
@@ -22,7 +22,7 @@ export class ShoppingListComponent implements OnInit{
   }
 
   editIngredient(index: number): void {
-    this.store.dispatch(ShoppingListActions.startEdit({index}))
+    this.store.dispatch(ShoppingListActions.startEdit({index}));
   }
 }
 
