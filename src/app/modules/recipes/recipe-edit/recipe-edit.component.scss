@@ -1,0 +1,61 @@
+.recipe-form input, .recipe-form textarea, .recipe-form select {
+  border: 1px dashed lightgrey;
+}
+
+.recipe-form-error {
+  border-color: tomato !important;
+}
+
+.recipe-form textarea{
+  display: inline-block;
+  resize: vertical;
+  width: 100%;
+}
+
+.recipe-form input.recipe-title {
+  color: #212529;
+  text-align: left;
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 1.2;
+  margin-bottom: .5rem;
+  padding: 1px 0 5px 5px;
+  width: 100%;
+}
+
+.recipe-form img {
+  max-height: 100%;
+  max-width: 100%;
+}
+
+.recipe-ingredients {
+  list-style: none;
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.recipe-ingredients .recipe-ingredients-name {
+  flex-basis: 80%;
+}
+
+.recipe-ingredients .recipe-ingredients-amount {
+  width: 20%;
+  min-width: 70px;
+}
+
+.recipe-ingredients .recipe-ingredients-remove {
+  align-self: flex-end;
+}
+
+.recipe-ingredients span {
+  line-height: 35px;
+}
+
+/** Number input normalize */
+.recipe-form input[type=number]::-webkit-inner-spin-button,
+.recipe-form input[type=number]::-webkit-outer-spin-button {
+  padding-right: .25rem !important;
+}
+.recipe-form input[type=number] {
+  padding-right: .25rem !important;
+}

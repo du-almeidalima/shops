@@ -1,0 +1,27 @@
+<div class="row">
+  <div class="col-12 col-lg-7">
+    <h4>My Recipes</h4>
+  </div>
+  <div class="col-12 col-lg-5 float-right">
+    <button class="btn btn-block btn-primary" [routerLink]="['create']">Add Recipe</button>
+  </div>
+</div>
+<div class="row mt-3">
+  <ng-content *ngIf="recipes.length > 0; then withRecipes else noRecipes"></ng-content>
+
+  <!-- Templates -->
+  <ng-template #withRecipes>
+    <div class="col-12" *ngFor="let recipeItem of recipes">
+      <app-recipe-item [recipe]="recipeItem"></app-recipe-item>
+    </div>
+  </ng-template>
+
+  <ng-template #noRecipes>
+    <section class="mt-2">
+      <h3>You don't have any recipes yet!</h3>
+      <p><b>Create</b> your amazing recipes by clicking "Add Recipes.<br />
+      Or <b>Fetch</b> the stored ones by clicking "Data Options" and "Fetch Recipes" from the Navbar menu.</p>
+    </section>
+  </ng-template>
+
+</div>

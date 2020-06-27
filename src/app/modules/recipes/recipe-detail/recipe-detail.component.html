@@ -1,0 +1,53 @@
+<div class="row justify-content-between">
+  <div class="col-12 col-lg-6">
+    <h4> {{selectedRecipe.name}} </h4>
+  </div>
+  <div class="col-12 col-lg-6 float-right">
+    <div class="dropdown" appDropdown [dropdownMenu]="dropdownMenu">
+      <button type="button" class="btn btn-block btn-secondary dropdown-toggle" data-toggle="dropdown">
+        Recipe Options
+      </button>
+      <div class="dropdown-menu" #dropdownMenu>
+        <button class="dropdown-item" (click)="onSendToShoppingList()">Send to Shopping List</button>
+        <button class="dropdown-item" (click)="onEditRecipe()">Edit Recipe</button>
+        <button class="dropdown-item" (click)="onRemoveRecipe()">Delete Recipe</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <h5>Description</h5>
+    <hr />
+    <div class="row">
+      <div class="col-12 col-md-12 col-lg-8">
+        <p> {{selectedRecipe.description}} </p>
+      </div>
+      <div class="col-12 col-md-12 col-lg-4">
+        <img
+          class="float-image"
+          [src]="selectedRecipe.imagePath"
+          alt=""
+        >
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <h5>Ingredients</h5>
+    <hr />
+  </div>
+  <div class="col-12">
+    <ul class="two-columns">
+      <li *ngFor="let ingredient of selectedRecipe.ingredients">{{ingredient.name}} &times; {{ingredient.amount}}</li>
+    </ul>
+  </div>
+</div>
+
+<!-- Here we just added a custom Directive that would flip its value and add and remove a class, we also needed to
+pass an element through reference due to bootstrap
+-->
