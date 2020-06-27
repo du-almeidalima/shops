@@ -4,7 +4,7 @@ import {Store} from '@ngrx/store';
 import {Subscription} from 'rxjs';
 import {map} from 'rxjs/operators';
 
-import {User} from '../auth/user.model';
+import {User} from '../../shared/models/user.model';
 import * as fromApp from '../../store/app.reducer';
 import * as AuthActions from '../auth/store/auth.actions';
 import * as RecipesActions from '../../modules/recipes/store/recipes.actions';

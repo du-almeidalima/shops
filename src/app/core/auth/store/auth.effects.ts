@@ -6,12 +6,12 @@ import {Actions, Effect, ofType} from '@ngrx/effects';
 import {of} from 'rxjs';
 
 import {environment as env} from '../../../../environments/environment';
-import {User} from '../user.model';
+import {User} from '../../../shared/models/user.model';
 import {MessageMapper} from '../../../shared/utils/message-mapper';
 import {MessageStatus} from '../../../shared/enums/message-status.enum';
 import {AuthResponseData} from '../../../shared/models/firebase/response-data.model';
 import * as AuthActions from './auth.actions';
-import {AuthService} from '../auth.service';
+import {AuthService} from '../providers/auth.service';
 
 /**
  * @author Eduardo Lima

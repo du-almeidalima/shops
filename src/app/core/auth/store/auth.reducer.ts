@@ -1,4 +1,4 @@
-import {User} from '../user.model';
+import {User} from '../../../shared/models/user.model';
 import {ResponseMessage} from '../../../shared/models/response-message.model';
 import * as AuthActions from './auth.actions';
 

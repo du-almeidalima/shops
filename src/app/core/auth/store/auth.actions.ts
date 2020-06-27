@@ -1,5 +1,5 @@
 import {Action} from '@ngrx/store';
-import {User} from '../user.model';
+import {User} from '../../../shared/models/user.model';
 import {ResponseMessage} from '../../../shared/models/response-message.model';
 
 export const LOGIN_START = '[Auth] Login Started';
