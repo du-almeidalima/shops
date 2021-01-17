@@ -1,5 +1,5 @@
-import {NgModule} from '@angular/core';
-import {PreloadAllModules, RouterModule, Routes} from '@angular/router';
+import { NgModule } from '@angular/core';
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 // Defining our routes
 const ROUTES: Routes = [
@@ -12,16 +12,22 @@ const ROUTES: Routes = [
   {
     path: 'shopping-list',
     loadChildren: () => import('./modules/shopping-list/shopping-list.module').then(m => m.ShoppingListModule)
-  }
+  },
+  {
+    path: 'home',
+    loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule)
+  },
+  { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];
 
 @NgModule({
   // Importing the RouterModule and configuring it with our routes
-  imports: [ RouterModule.forRoot(ROUTES, { preloadingStrategy: PreloadAllModules })],
+  imports: [RouterModule.forRoot(ROUTES, { preloadingStrategy: PreloadAllModules })],
   // Exporting it to the main module
-  exports: [ RouterModule ]
+  exports: [RouterModule]
 })
-export class AppRoutesModule {}
+export class AppRoutesModule {
+}
 
 /*
  * ------------ Comments -------------

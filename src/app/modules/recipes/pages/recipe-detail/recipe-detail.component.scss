@@ -1,0 +1,16 @@
+.float-image{
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  padding: 2px;
+  max-width: 100%;
+}
+
+.two-columns{
+  columns: 2;
+}
+
+@media screen and (max-width: 900px) {
+  .two-columns{
+    columns: 1;
+  }
+}

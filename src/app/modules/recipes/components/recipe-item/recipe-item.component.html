@@ -1,0 +1,14 @@
+<!-- For now we're only outputting the data of a single recipe -->
+<div class="card clickable mb-3 rounded-0" style="max-width: 540px; min-height: 25%" [routerLink]="[recipe.id]" [routerLinkActive]="'recipe-active'">
+  <div class="row no-gutters">
+    <div class="col-md-4">
+      <img [src]="recipe.imagePath" class="app-recipe-detail-card-img" alt="..." #recipeImg (error)="imgError()">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title"><b>{{ recipe.name }}</b></h5>
+        <p class="card-text text-truncate">{{ recipe.description }}</p>
+      </div>
+    </div>
+  </div>
+</div>

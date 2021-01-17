@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {ShoppingListComponent} from './shopping-list.component';
+import {ShoppingListComponent} from './pages/shopping-list.component';
 
 const SHOPPING_LIST_ROUTES: Routes = [
   { path: '', component: ShoppingListComponent}

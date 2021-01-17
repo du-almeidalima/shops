@@ -2,12 +2,12 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {ReactiveFormsModule} from '@angular/forms';
 
-import {RecipesComponent} from './recipes.component';
-import {RecipesListComponent} from './recipes-list/recipes-list.component';
-import {RecipeDetailComponent} from './recipe-detail/recipe-detail.component';
-import {RecipeItemComponent} from './recipes-list/recipe-item/recipe-item.component';
-import {RecipeEditComponent} from './recipe-edit/recipe-edit.component';
-import {NoRecipeComponent} from './no-recipe/no-recipe.component';
+import {RecipesComponent} from './pages/recipes.component';
+import {RecipesListComponent} from './components/recipes-list/recipes-list.component';
+import {RecipeDetailComponent} from './pages/recipe-detail/recipe-detail.component';
+import {RecipeItemComponent} from './components/recipe-item/recipe-item.component';
+import {RecipeEditComponent} from './pages/recipe-edit/recipe-edit.component';
+import {NoRecipeComponent} from './pages/no-recipe/no-recipe.component';
 import {RecipesRoutesModule} from './recipes-routes.module';
 
 import {SharedModule} from '../../shared/shared.module';

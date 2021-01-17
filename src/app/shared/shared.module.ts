@@ -22,6 +22,4 @@ import {CommonModule} from '@angular/common';
     PlaceholderDirective,
   ]
 })
-export class SharedModule {
-
-}
+export class SharedModule {}

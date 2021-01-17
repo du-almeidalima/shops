@@ -2,8 +2,8 @@ import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';
 import {ShoppingListRoutesModule} from './shopping-list-routes.module';
-import {ShoppingListComponent} from './shopping-list.component';
-import {ShoppingEditComponent} from './shopping-edit/shopping-edit.component';
+import {ShoppingListComponent} from './pages/shopping-list.component';
+import {ShoppingEditComponent} from './components/shopping-edit/shopping-edit.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +16,4 @@ import {ShoppingEditComponent} from './shopping-edit/shopping-edit.component';
     ShoppingListRoutesModule
   ]
 })
-export class ShoppingListModule {
-
-}
+export class ShoppingListModule {}

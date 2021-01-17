@@ -2,7 +2,7 @@ import {Action, ActionReducerMap} from '@ngrx/store';
 
 import * as fromShoppingList from '../modules/shopping-list/store/shopping-list.reducer';
 import * as fromRecipes from '../modules/recipes/store/recipes.reducer';
-import * as fromAuth from '../core/auth/store/auth.reducer';
+import * as fromAuth from '../modules/auth/store/auth.reducer';
 
 /* Global application state structure */
 export interface AppState {
