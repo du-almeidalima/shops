@@ -9,9 +9,17 @@ import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { AppRoutesModule } from './app-routes.module';
 
-import * as fromApp from './store/app.reducer';
-import { AuthEffects } from './modules/auth/store/auth.effects';
+import { AuthEffects } from './core/modules/auth/store/auth.effects';
 import { RecipesEffects } from './modules/recipes/store/recipes.effects';
+import { StoreDevtoolsModule, StoreDevtoolsOptions } from '@ngrx/store-devtools';
+
+import * as fromApp from './store/app.reducer';
+import { environment as env } from '../environments/environment';
+
+const DEV_TOOLS_CONFIG: StoreDevtoolsOptions = {
+  maxAge: 20,
+  logOnly: !env.production
+};
 
 @NgModule({
   declarations: [
@@ -24,8 +32,10 @@ import { RecipesEffects } from './modules/recipes/store/recipes.effects';
     CoreModule,
     SharedModule,
     StoreModule.forRoot(fromApp.reducers),
-    EffectsModule.forRoot([ AuthEffects, RecipesEffects ]),
+    EffectsModule.forRoot([AuthEffects, RecipesEffects]),
+    StoreDevtoolsModule.instrument(DEV_TOOLS_CONFIG)
   ],
-  bootstrap: [ AppComponent ]
+  bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

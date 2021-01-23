@@ -9,11 +9,12 @@ import { NgForm } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 
-import { ResponseMessage } from '../../../shared/models/response-message.model';
-import { FeedbackMessageComponent } from '../../../shared/components/feedback-message/feedback-message.component';
-import { PlaceholderDirective } from '../../../shared/directives/placeholder.directive';
-import * as fromApp from '../../../store/app.reducer';
+import { ResponseMessage } from '../../../../shared/models/response-message.model';
+import { FeedbackMessageComponent } from '../../../../shared/components/feedback-message/feedback-message.component';
+import { PlaceholderDirective } from '../../../../shared/directives/placeholder.directive';
+import * as fromApp from '../../../../store/app.reducer';
 import * as AuthActions from '../store/auth.actions';
+import { authSelector } from '../store/auth.reducer';
 
 
 @Component({
@@ -39,7 +40,7 @@ export class AuthComponent implements OnDestroy, OnInit {
 
   // ANGULAR HOOKS
   ngOnInit(): void {
-    this.storeSubscription = this.store.select('auth').subscribe(authState => {
+    this.storeSubscription = this.store.select(authSelector).subscribe(authState => {
       this.isLoading = authState.isLoading;
       if (authState.authError) {
         this.showErrorFeedBackMessage(authState.authError);
@@ -75,11 +76,8 @@ export class AuthComponent implements OnDestroy, OnInit {
 
     const { email, password } = form.value;
 
-    if (this.isLoginMode) {
-      this.store.dispatch(new AuthActions.LoginStart({ email, password }));
-    } else {
-      this.store.dispatch(new AuthActions.SignUpStart({ email, password }));
-    }
+    const authType = this.isLoginMode ? 'SIGN_IN' : 'SIGN_UP';
+    this.store.dispatch(AuthActions.authStart({ email, password, authType }));
   }
 
   private showErrorFeedBackMessage(errData: ResponseMessage): void {
@@ -101,7 +99,7 @@ export class AuthComponent implements OnDestroy, OnInit {
     this.messageFeedbackSubscription = feedBackMessageCompRef.instance.messageDismiss
       .subscribe(() => {
         this.messageFeedbackSubscription.unsubscribe();
-        this.store.dispatch(new AuthActions.ClearError());
+        this.store.dispatch(AuthActions.clearError());
         hostViewContainerRef.clear();
       });
   }

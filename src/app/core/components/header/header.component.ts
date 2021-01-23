@@ -6,8 +6,9 @@ import {map} from 'rxjs/operators';
 
 import {User} from '../../../shared/models/user.model';
 import * as fromApp from '../../../store/app.reducer';
-import * as AuthActions from '../../../modules/auth/store/auth.actions';
+import * as AuthActions from '../../modules/auth/store/auth.actions';
 import * as RecipesActions from '../../../modules/recipes/store/recipes.actions';
+import { authSelector } from '../../modules/auth/store/auth.reducer';
 
 @Component({
   selector: 'app-header',
@@ -28,11 +29,11 @@ export class HeaderComponent implements OnInit, OnDestroy{
   }
 
   public onLogOut(): void {
-    this.store.dispatch(new AuthActions.LogOut());
+    this.store.dispatch(AuthActions.logout());
   }
 
   ngOnInit(): void {
-    this.userAuthSubscription = this.store.select('auth')
+    this.userAuthSubscription = this.store.select(authSelector)
       .pipe( map(authState => authState.user))
       .subscribe((user: User) => {
         // user ? true : false

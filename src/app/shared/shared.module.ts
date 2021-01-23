@@ -16,6 +16,7 @@ import {CommonModule} from '@angular/common';
     CommonModule
   ],
   exports: [
+    CommonModule,
     FeedbackMessageComponent,
     LoadingSpinnerComponent,
     DropdownDirective,

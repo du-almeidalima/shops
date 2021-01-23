@@ -1,20 +1,15 @@
-import {NgModule} from '@angular/core';
-import {HeaderComponent} from './components/header/header.component';
-import {HomeComponent} from '../modules/home/pages/home.component';
+import { NgModule } from '@angular/core';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import {FormsModule} from '@angular/forms';
-import {CommonModule} from '@angular/common';
-import {RouterModule, Routes} from '@angular/router';
-import {SharedModule} from '../shared/shared.module';
+import { RouterModule, Routes } from '@angular/router';
+
+import { SharedModule } from '../shared/shared.module';
 import { AuthInterceptor } from './services/auth.interceptor';
+import { AuthModule } from './modules/auth/auth.module';
+import { AuthComponent } from './modules/auth/pages/auth.component';
+import { HeaderComponent } from './components/header/header.component';
 
 const CORE_ROUTES: Routes = [
-  { path: 'home', component: HomeComponent },
-  { path: '', redirectTo: 'home', pathMatch: 'full'},
-  {
-    path: 'login',
-    loadChildren: () => import('../modules/auth/auth.module').then(m => m.AuthModule)
-  }
+  { path: 'login', component: AuthComponent }
 ];
 
 @NgModule({
@@ -22,14 +17,13 @@ const CORE_ROUTES: Routes = [
     HeaderComponent
   ],
   imports: [
-    CommonModule,
-    RouterModule.forChild(CORE_ROUTES),
+    SharedModule,
     HttpClientModule,
-    FormsModule,
-    SharedModule
+    AuthModule,
+    RouterModule.forChild(CORE_ROUTES)
   ],
   exports: [
-    HeaderComponent,
+    HeaderComponent
   ],
   providers: [
     {
@@ -39,4 +33,5 @@ const CORE_ROUTES: Routes = [
     }
   ]
 })
-export class CoreModule {}
+export class CoreModule {
+}

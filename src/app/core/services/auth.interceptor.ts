@@ -1,19 +1,21 @@
-import {Injectable} from '@angular/core';
-import {HttpEvent, HttpHandler, HttpInterceptor, HttpParams, HttpRequest} from '@angular/common/http';
-import {Store} from '@ngrx/store';
+import { Injectable } from '@angular/core';
+import { HttpEvent, HttpHandler, HttpInterceptor, HttpParams, HttpRequest } from '@angular/common/http';
+import { Store } from '@ngrx/store';
 
-import {Observable} from 'rxjs';
-import {exhaustMap, map, take} from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { exhaustMap, map, take } from 'rxjs/operators';
 
+import { authSelector } from '../modules/auth/store/auth.reducer';
 import * as fromApp from '../../store/app.reducer';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
-  constructor(private store: Store<fromApp.AppState>) {}
+  constructor(private store: Store<fromApp.AppState>) {
+  }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    return this.store.select('auth')
+    return this.store.select(authSelector)
       .pipe(
         take(1),
         map(authState => {
@@ -22,7 +24,7 @@ export class AuthInterceptor implements HttpInterceptor {
         // Swapping the userAuthObservable for the request Observable
         exhaustMap(user => {
           // Checking the user has already logged in
-          if (!user){
+          if (!user) {
             return next.handle(req);
           }
           const requestWithToken = req.clone({
