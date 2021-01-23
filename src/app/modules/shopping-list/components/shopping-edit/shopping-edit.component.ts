@@ -1,12 +1,13 @@
-import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {NgForm} from '@angular/forms';
-import {Store} from '@ngrx/store';
-import {Subscription} from 'rxjs';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { Subscription } from 'rxjs';
 
-import {Ingredient} from '../../../../shared/models/ingredient.model';
+import { Ingredient } from '../../../../shared/models/ingredient.model';
 /* This is the convention for importing the reducer file */
 import * as fromApp from '../../../../store/app.reducer';
 import * as ShoppingListActions from '../../store/shopping-list.actions';
+import { shoppingListSelector } from '../../store/shopping-list.reducer';
 
 @Component({
   selector: 'app-shopping-edit',
@@ -18,10 +19,11 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
   private selectIngredientSubscription: Subscription;
   @ViewChild('f') private ingredientForm: NgForm;
 
-  constructor(private store: Store<fromApp.AppState>){}
+  constructor(private store: Store<fromApp.AppState>) {
+  }
 
   ngOnInit(): void {
-    this.selectIngredientSubscription = this.store.select('shoppingList')
+    this.selectIngredientSubscription = this.store.select(shoppingListSelector)
       .subscribe(stateData => {
         if (stateData.editedIngredientIndex > -1) {
           this.editMode = true;
@@ -64,7 +66,7 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
   }
 
   // Utils
-  private clearForm(): void{
+  private clearForm(): void {
     this.editMode = false;
     this.ingredientForm.reset();
   }
