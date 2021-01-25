@@ -1,13 +1,14 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {ActivatedRoute, Params, Router} from '@angular/router';
-import {AbstractControl, FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
-import {Subscription} from 'rxjs';
-import {Store} from '@ngrx/store';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { AbstractControl, FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
+import { Store } from '@ngrx/store';
+
 // @ts-ignore
 import FOOD_PLACEHOLDER from '../../../../../assets/img/food-placeholder.jpg';
-import {Ingredient} from '../../../../shared/models/ingredient.model';
-import {Recipe} from '../../../../shared/models/recipe.model';
-import * as fromApp from '../../../../store/app.reducer';
+import { Ingredient } from '../../../../shared/models/ingredient.model';
+import { Recipe } from '../../../../shared/models/recipe.model';
+import * as fromRecipes from '../../store/recipes.reducer';
 import * as RecipeActions from '../../store/recipes.actions';
 
 @Component({
@@ -26,21 +27,36 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
   public FOOD_PLACEHOLDER = FOOD_PLACEHOLDER;
 
   // Form Controls Getters
-  public get name(): AbstractControl { return this.recipeForm.get('name'); }
-  public get description(): AbstractControl { return this.recipeForm.get('description'); }
-  public get imgPath(): AbstractControl { return this.recipeForm.get('imagePath'); }
-  public get ingredients(): AbstractControl { return this.recipeForm.get('ingredients'); }
-  public get ingredientsControls(): AbstractControl[] { return (this.ingredients as FormArray).controls; }
+  public get name(): AbstractControl {
+    return this.recipeForm.get('name');
+  }
+
+  public get description(): AbstractControl {
+    return this.recipeForm.get('description');
+  }
+
+  public get imgPath(): AbstractControl {
+    return this.recipeForm.get('imagePath');
+  }
+
+  public get ingredients(): AbstractControl {
+    return this.recipeForm.get('ingredients');
+  }
+
+  public get ingredientsControls(): AbstractControl[] {
+    return (this.ingredients as FormArray).controls;
+  }
 
   constructor(private route: ActivatedRoute,
               private router: Router,
-              private store: Store<fromApp.AppState>) { }
+              private store: Store) {
+  }
 
   ngOnInit(): void {
     this.route.params.subscribe(
       (params: Params) => {
         this.id = +params.id;
-        this.storeSubscription = this.store.select('recipes')
+        this.storeSubscription = this.store.select(fromRecipes.recipesSelector)
           .subscribe(recipesState => {
             // If the URL contains the id then it's editing, otherwise it's a new recipe
             if (this.id) {
@@ -48,7 +64,7 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
               this.currentRecipe = recipesState.recipes.find(r => r.id === this.id);
             } else {
               this.isEditMode = false;
-              this.currentRecipe = new Recipe( null, '', '', this.FOOD_PLACEHOLDER, [new Ingredient('', 0)]);
+              this.currentRecipe = new Recipe(null, '', '', this.FOOD_PLACEHOLDER, [new Ingredient('', 0)]);
               this.imgPlaceholder = true;
             }
 
@@ -69,10 +85,10 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
     const { name, description, imagePath, ingredients } = this.recipeForm.value;
     const recipe = new Recipe(this.id, name, description, imagePath, ingredients);
 
-    if (this.isEditMode){
-      this.store.dispatch(new RecipeActions.UpdateRecipe(recipe));
+    if (this.isEditMode) {
+      this.store.dispatch(RecipeActions.updateRecipe({ recipe }));
     } else {
-      this.store.dispatch(new RecipeActions.AddRecipe(recipe));
+      this.store.dispatch(RecipeActions.addRecipe({ recipe }));
     }
 
     this.router.navigate(['recipes']);
@@ -102,7 +118,7 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
     this.recipeForm = new FormGroup({
       name: new FormControl(recipe.name, Validators.required),
       description: new FormControl(recipe.description, Validators.required),
-      imagePath: new FormControl(recipe.imagePath, {updateOn: 'blur'}),
+      imagePath: new FormControl(recipe.imagePath, { updateOn: 'blur' }),
       // Mapping Ingredients to a FormGroup
       ingredients: new FormArray(recipe.ingredients.map(ing => {
         return new FormGroup({

@@ -5,7 +5,6 @@ import { Subscription } from 'rxjs';
 
 import { Ingredient } from '../../../../shared/models/ingredient.model';
 /* This is the convention for importing the reducer file */
-import * as fromApp from '../../../../store/app.reducer';
 import * as ShoppingListActions from '../../store/shopping-list.actions';
 import { shoppingListSelector } from '../../store/shopping-list.reducer';
 
@@ -19,7 +18,7 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
   private selectIngredientSubscription: Subscription;
   @ViewChild('f') private ingredientForm: NgForm;
 
-  constructor(private store: Store<fromApp.AppState>) {
+  constructor(private store: Store) {
   }
 
   ngOnInit(): void {

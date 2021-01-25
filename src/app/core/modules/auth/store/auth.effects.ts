@@ -105,8 +105,7 @@ export class AuthEffects {
 function handleAuthentication(resData: AuthResponseData): Action {
   const expirationDate = new Date().getTime() + (+resData.expiresIn * 1000);
   const user = new User(resData.email, resData.localId, resData.idToken, new Date(expirationDate));
-  // Storing user for Auto login feature
-  localStorage.setItem(this.LS_USER_KEY, JSON.stringify(user));
+  this.authService.setAuthUserToLocalStorage(user);
 
   return AuthActions.authenticationSuccess({ user, redirect: true });
 }

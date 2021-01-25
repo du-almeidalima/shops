@@ -1,10 +1,4 @@
-import {
-  Component,
-  ComponentFactoryResolver,
-  OnDestroy,
-  OnInit,
-  ViewChild
-} from '@angular/core';
+import { Component, ComponentFactoryResolver, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
@@ -12,9 +6,8 @@ import { Subscription } from 'rxjs';
 import { ResponseMessage } from '../../../../shared/models/response-message.model';
 import { FeedbackMessageComponent } from '../../../../shared/components/feedback-message/feedback-message.component';
 import { PlaceholderDirective } from '../../../../shared/directives/placeholder.directive';
-import * as fromApp from '../../../../store/app.reducer';
-import * as AuthActions from '../store/auth.actions';
 import { authSelector } from '../store/auth.reducer';
+import * as AuthActions from '../store/auth.actions';
 
 
 @Component({
@@ -34,7 +27,7 @@ export class AuthComponent implements OnDestroy, OnInit {
 
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
-    private store: Store<fromApp.AppState>
+    private store: Store
   ) {
   }
 

@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import * as fromApp from '../../../../store/app.reducer';
-import * as AuthActions from '../store/auth.actions';
 import { HttpClient, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
 import { AuthResponseData } from '../../../../shared/models/firebase/response-data.model';
 import { environment as env } from '../../../../../environments/environment';
-import { Observable } from 'rxjs';
+import * as AuthActions from '../store/auth.actions';
+import { User } from '../../../../shared/models/user.model';
 
 
 @Injectable()
@@ -16,7 +17,7 @@ export class AuthService {
 
   private tokenExpirationTimer: any;
 
-  constructor(private store: Store<fromApp.AppState>, private http: HttpClient) {
+  constructor(private store: Store, private http: HttpClient) {
   }
 
   public authenticate(email: string, password: string, authType: 'SIGN_IN' | 'SIGN_UP'): Observable<any> {
@@ -36,6 +37,10 @@ export class AuthService {
 
   public getAuthUserFromLocalStorage(): any {
     return JSON.parse(localStorage.getItem(this.LS_USER_KEY));
+  }
+
+  public setAuthUserToLocalStorage(user: User): void {
+    localStorage.setItem(this.LS_USER_KEY, JSON.stringify(user));
   }
 
   public logout(): void {

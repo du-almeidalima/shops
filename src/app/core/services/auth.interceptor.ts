@@ -6,12 +6,11 @@ import { Observable } from 'rxjs';
 import { exhaustMap, map, take } from 'rxjs/operators';
 
 import { authSelector } from '../modules/auth/store/auth.reducer';
-import * as fromApp from '../../store/app.reducer';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
-  constructor(private store: Store<fromApp.AppState>) {
+  constructor(private store: Store) {
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {

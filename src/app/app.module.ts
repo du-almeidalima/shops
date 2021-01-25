@@ -8,12 +8,7 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { AppRoutesModule } from './app-routes.module';
-
-import { AuthEffects } from './core/modules/auth/store/auth.effects';
-import { RecipesEffects } from './modules/recipes/store/recipes.effects';
 import { StoreDevtoolsModule, StoreDevtoolsOptions } from '@ngrx/store-devtools';
-
-import * as fromApp from './store/app.reducer';
 import { environment as env } from '../environments/environment';
 
 const DEV_TOOLS_CONFIG: StoreDevtoolsOptions = {
@@ -31,8 +26,8 @@ const DEV_TOOLS_CONFIG: StoreDevtoolsOptions = {
     HttpClientModule,
     CoreModule,
     SharedModule,
-    StoreModule.forRoot(fromApp.reducers),
-    EffectsModule.forRoot([AuthEffects, RecipesEffects]),
+    StoreModule.forRoot({}),
+    EffectsModule.forRoot(),
     StoreDevtoolsModule.instrument(DEV_TOOLS_CONFIG)
   ],
   bootstrap: [AppComponent]

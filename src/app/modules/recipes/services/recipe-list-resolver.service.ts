@@ -1,22 +1,19 @@
-import {Injectable} from '@angular/core';
-import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from '@angular/router';
-import {Store} from '@ngrx/store';
-import {Actions, ofType} from '@ngrx/effects';
-import {Observable, of} from 'rxjs';
-import {map, switchMap, take} from 'rxjs/operators';
-import {Recipe} from '../../../shared/models/recipe.model';
-import * as fromApp from '../../../store/app.reducer';
+import { Injectable } from '@angular/core';
+import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { of } from 'rxjs';
+import { map, switchMap, take } from 'rxjs/operators';
+import * as fromRecipes from '../store/recipes.reducer';
 import * as RecipesActions from '../store/recipes.actions';
 
 @Injectable({providedIn: 'root'})
-export class RecipeListResolver implements Resolve<Recipe[]>{
-  constructor(private store: Store<fromApp.AppState>, private actions$: Actions) {}
+export class RecipeListResolver implements Resolve<void>{
+  constructor(private store: Store) {}
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):
-    Observable<Recipe[]> | Promise<Recipe[]> | Recipe[] {
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): void {
 
-
-    return this.store.select('recipes')
+    // Checks if there is already recipes loaded, if not it dispatch an action to fetch and return the recipes
+    this.store.select(fromRecipes.recipesSelector)
       .pipe(
         take(1),
         map(recipesState => recipesState.recipes),
@@ -25,11 +22,8 @@ export class RecipeListResolver implements Resolve<Recipe[]>{
             return of(recipes);
           }
 
-          this.store.dispatch(new RecipesActions.FetchRecipes());
-          return this.actions$.pipe(
-            ofType(RecipesActions.SET_RECIPES),
-            take(1)
-          );
+          // Fetching new Recipes
+          this.store.dispatch(RecipesActions.fetchRecipes());
         })
       );
   }

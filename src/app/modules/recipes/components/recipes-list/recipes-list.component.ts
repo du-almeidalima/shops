@@ -1,9 +1,9 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Store} from '@ngrx/store';
-import {Subscription} from 'rxjs';
-import {map} from 'rxjs/operators';
-import {Recipe} from '../../../../shared/models/recipe.model';
-import * as fromApp from '../../../../store/app.reducer';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Subscription } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { Recipe } from '../../../../shared/models/recipe.model';
+import * as fromRecipes from '../../store/recipes.reducer';
 
 @Component({
   selector: 'app-recipes-list',
@@ -15,20 +15,22 @@ export class RecipesListComponent implements OnInit, OnDestroy {
   public recipes: Recipe[];
   public storeSubscription: Subscription;
 
-  constructor(private store: Store<fromApp.AppState>) {}
+  constructor(private store: Store) {
+  }
 
   ngOnInit(): void {
-    this.storeSubscription = this.store.select('recipes')
-      .pipe( map(recipesState => recipesState.recipes))
+    this.storeSubscription = this.store.select(fromRecipes.recipesSelector)
+      .pipe(map(recipesState => recipesState.recipes))
       .subscribe(
-      (recipes: Recipe[]) => {
-        if (recipes) {
-          this.recipes = recipes;
-        } else {
-          console.log(`You don't have any recipe yet!`);
+        (recipes: Recipe[]) => {
+          if (recipes) {
+            console.log(recipes);
+            this.recipes = recipes;
+          } else {
+            console.log(`You don't have any recipe yet!`);
+          }
         }
-      }
-    );
+      );
   }
 
   // Important to prevent memory leaks

@@ -4,7 +4,7 @@ import {Store} from '@ngrx/store';
 import {map, switchMap} from 'rxjs/operators';
 
 import {Recipe} from '../../../../shared/models/recipe.model';
-import * as fromApp from '../../../../store/app.reducer';
+import * as fromRecipes from '../../store/recipes.reducer';
 import * as ShoppingListActions from '../../../shopping-list/store/shopping-list.actions';
 import * as RecipeActions from '../../store/recipes.actions';
 
@@ -19,7 +19,7 @@ export class RecipeDetailComponent implements OnInit {
   // Properties
   public selectedRecipe: Recipe;
 
-  constructor(private store: Store<fromApp.AppState>,
+  constructor(private store: Store,
               private route: ActivatedRoute,
               private router: Router) { }
 
@@ -31,7 +31,7 @@ export class RecipeDetailComponent implements OnInit {
           return +params.id;
         }),
         switchMap(id => {
-          return this.store.select('recipes')
+          return this.store.select(fromRecipes.recipesSelector)
             .pipe(
               map(recipesState => recipesState.recipes.find(r => r.id === id))
             );
@@ -60,7 +60,7 @@ export class RecipeDetailComponent implements OnInit {
   }
 
   public onRemoveRecipe(): void {
-    this.store.dispatch(new RecipeActions.DeleteRecipe(this.selectedRecipe.id));
+    this.store.dispatch(RecipeActions.deleteRecipe({ id: this.selectedRecipe.id }));
     this.router.navigate(['recipes']);
   }
 

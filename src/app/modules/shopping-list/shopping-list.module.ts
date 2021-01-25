@@ -16,7 +16,7 @@ import * as fromShoppingList from './store/shopping-list.reducer';
     CommonModule,
     FormsModule,
     ShoppingListRoutesModule,
-    StoreModule.forFeature(fromShoppingList.featureKey, fromShoppingList.reducer)
+    StoreModule.forFeature(fromShoppingList.featureKey, fromShoppingList.reducer),
   ]
 })
 export class ShoppingListModule {
