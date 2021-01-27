@@ -14,6 +14,7 @@ import { SharedModule } from '../../shared/shared.module';
 import * as fromRecipes from './store/recipes.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { RecipesEffects } from './store/recipes.effects';
+import { RecipesService } from './services/recipes.service';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,10 @@ import { RecipesEffects } from './store/recipes.effects';
     EffectsModule.forFeature([RecipesEffects]),
     SharedModule
   ],
-  exports: []
+  exports: [],
+  providers: [
+    RecipesService
+  ]
 })
 export class RecipesModule {
 }
