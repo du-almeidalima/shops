@@ -4,6 +4,8 @@ import {LoadingSpinnerComponent} from './components/loading-spinner/loading-spin
 import {DropdownDirective} from './directives/dropdown.directive';
 import {PlaceholderDirective} from './directives/placeholder.directive';
 import {CommonModule} from '@angular/common';
+import { PageHeaderComponent } from './components/page-header/page-header.component';
+import { FilledButtonComponent } from './ui/filled-button/filled-button.component';
 
 @NgModule({
   declarations: [
@@ -11,6 +13,8 @@ import {CommonModule} from '@angular/common';
     LoadingSpinnerComponent,
     DropdownDirective,
     PlaceholderDirective,
+    PageHeaderComponent,
+    FilledButtonComponent,
   ],
   imports: [
     CommonModule
@@ -21,6 +25,8 @@ import {CommonModule} from '@angular/common';
     LoadingSpinnerComponent,
     DropdownDirective,
     PlaceholderDirective,
+    PageHeaderComponent,
+    FilledButtonComponent
   ]
 })
 export class SharedModule {}

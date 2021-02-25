@@ -1,0 +1,23 @@
+@import "src/assets/scss/styles";
+
+:host {
+  height: fit-content;
+  width: fit-content;
+}
+
+.app-filled-button {
+  background-color: $pink-100;
+  color: white;
+  font-weight: bold;
+  font-size: 1em;
+  outline: none;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  transition: border 75ms linear;
+  cursor: pointer;
+  padding: 10px 15px;
+
+  &:hover, &:focus, &:active {
+    border: 1px solid $primary;
+  }
+ }
