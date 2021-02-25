@@ -1,0 +1,27 @@
+@import "src/assets/scss/styles";
+
+.app-page-header {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+
+  .app-page-header-title {
+    margin-right: 5%;
+    color: $pink-100;
+  }
+
+  .app-page-header-separator {
+    flex: 1;
+    height: 2px;
+    margin: auto 0 auto 0;
+    background-color: $pink-100;
+  }
+
+  & > * {
+    display: inline-block;
+  }
+
+  & > :last-child{
+    margin: auto 0 auto 5%;
+  }
+}
