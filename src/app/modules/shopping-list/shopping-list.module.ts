@@ -6,6 +6,7 @@ import { ShoppingListComponent } from './pages/shopping-list.component';
 import { ShoppingEditComponent } from './components/shopping-edit/shopping-edit.component';
 import { StoreModule } from '@ngrx/store';
 import * as fromShoppingList from './store/shopping-list.reducer';
+import { SharedModule } from '../../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import * as fromShoppingList from './store/shopping-list.reducer';
     FormsModule,
     ShoppingListRoutesModule,
     StoreModule.forFeature(fromShoppingList.featureKey, fromShoppingList.reducer),
+    SharedModule
   ]
 })
 export class ShoppingListModule {
