@@ -1,1 +1,14 @@
 @import "src/assets/scss/styles";
+
+.app-shopping-lists-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 30px;
+  min-width: 0;
+}
+
+@media (min-width: $medium) {
+  .app-shopping-lists-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

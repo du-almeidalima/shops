@@ -1,5 +1,13 @@
-<section>
+<main>
   <app-page-header pageTitle='My Shopping Lists'>
     <app-filled-button>Click Me</app-filled-button>
   </app-page-header>
-</section>
+
+  <section class='app-shopping-lists-container'>
+    <app-shopping-list-card
+      *ngFor='let shoppingList of ($shoppingLists | async)'
+      [shoppingList]='shoppingList'
+    >
+    </app-shopping-list-card>
+  </section>
+</main>
