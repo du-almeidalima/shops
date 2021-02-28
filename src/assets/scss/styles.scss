@@ -3,3 +3,16 @@
 @import "partials/app-utils";
 @import "partials/app-tooltip";
 
+/* == VARIABLES == */
+$padding : 1rem;
+$border-radius: 10px;
+
+/* == VIEWPORTS == */
+$small: 480px;
+$medium: 768px;
+$large: 1024px;
+
+.main-container {
+  margin: auto;
+  max-width: 90vw;
+}

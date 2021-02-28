@@ -1,12 +1,16 @@
-import { Action, createFeatureSelector, createReducer, on } from '@ngrx/store';
+import { Action, createFeatureSelector, createReducer, createSelector, on } from '@ngrx/store';
 
 import { Ingredient } from '../../../shared/models/ingredient.model';
 import * as ShoppingListActions from './shopping-list.actions';
+import ShoppingList from '../../../shared/models/shopping-list';
+
+import SHOPPING_LIST_MOCK from '../../../shared/utils/mock/shopping-lists.mock';
 
 export const featureKey = 'shoppingList';
 
 /* State Structure */
 interface ShoppingListState {
+  shoppingLists: ShoppingList[];
   ingredients: Ingredient[];
   editedIngredient: Ingredient;
   editedIngredientIndex: number;
@@ -14,6 +18,7 @@ interface ShoppingListState {
 
 /* The initial state of this feature */
 const initialState: ShoppingListState = {
+  shoppingLists: SHOPPING_LIST_MOCK,
   ingredients: [
     new Ingredient('Tomato', 4),
     new Ingredient('Onion', 10)
@@ -69,6 +74,12 @@ export const reducer = (state: ShoppingListState, action: Action): ShoppingListS
 };
 
 export const shoppingListSelector = createFeatureSelector<ShoppingListState>(featureKey);
+
+/* Custom Selectors */
+export const selectShoppingLists = createSelector(
+  shoppingListSelector,
+  (state: ShoppingListState) => state.shoppingLists
+);
 /*
  * The reducer is a function that will take the state and the action to perform the change on the application state.
  * In ngRx Redux Reducer. This function will be called the NgRx package and this will pass 2 arguments to this func:
