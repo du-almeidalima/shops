@@ -20,7 +20,6 @@ export class RecipesService {
       .pipe(
         // For recipes with no Ingredients
         map((recipes: Recipe[]) => {
-          console.log(recipes);
           if (recipes?.length > 0) {
             return recipes.map(recipe => {
               return {
