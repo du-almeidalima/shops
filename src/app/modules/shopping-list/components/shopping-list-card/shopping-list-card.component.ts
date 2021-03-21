@@ -17,9 +17,9 @@ export class ShoppingListCardComponent implements OnInit {
   ngOnInit(): void {
     this.amount = this.shoppingList.items.reduce((acc, cur) => acc + cur.amount, 0);
     this.itemsSummary = this.shoppingList.items.reduce((acc, curr, i) => {
-      return i >= this.shoppingList.items.length
-        ? `${acc} ${curr.amount} ${curr.name}`
-        : `${acc} ${curr.amount} ${curr.name},`;
+      return i < (this.shoppingList.items.length - 1)
+        ? `${acc} ${curr.amount} ${curr.name},`
+        : `${acc} ${curr.amount} ${curr.name}`;
     }, '');
   }
 }

@@ -7,7 +7,8 @@ export const environment = {
   firebaseAPIKey: 'AIzaSyCpd5DSsqbLJfu6LL-7JIGzSaAGuwiVy_Y',
   api: {
     baseURL: 'https://my-lists-api.firebaseio.com/',
-    recipes: 'recipes'
+    recipes: 'recipes',
+    shoppingLists: 'shoppingLists',
   },
 };
 

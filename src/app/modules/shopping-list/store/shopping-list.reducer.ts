@@ -1,15 +1,14 @@
 import { Action, createFeatureSelector, createReducer, createSelector, on } from '@ngrx/store';
 
 import { Ingredient } from '../../../shared/models/ingredient.model';
-import * as ShoppingListActions from './shopping-list.actions';
 import ShoppingList from '../../../shared/models/shopping-list';
-
-import SHOPPING_LIST_MOCK from '../../../shared/utils/mock/shopping-lists.mock';
+import * as ShoppingListActions from './shopping-list.actions';
 
 export const featureKey = 'shoppingList';
 
 /* State Structure */
 interface ShoppingListState {
+  isLoading: boolean;
   shoppingLists: ShoppingList[];
   ingredients: Ingredient[];
   editedIngredient: Ingredient;
@@ -18,7 +17,8 @@ interface ShoppingListState {
 
 /* The initial state of this feature */
 const initialState: ShoppingListState = {
-  shoppingLists: SHOPPING_LIST_MOCK,
+  isLoading: false,
+  shoppingLists: null,
   ingredients: [
     new Ingredient('Tomato', 4),
     new Ingredient('Onion', 10)
@@ -38,6 +38,12 @@ const initialState: ShoppingListState = {
 
 const shoppingListReducer = createReducer<ShoppingListState, Action>(
   initialState,
+  on(ShoppingListActions.fetchShoppingLists, (state) =>
+    ({ ...state, isLoading: true })
+  ),
+  on(ShoppingListActions.setShoppingLists, (state, { shoppingLists }) =>
+    ({ ...state, isLoading: false, shoppingLists })
+  ),
   on(ShoppingListActions.addIngredient, (state, { ingredient }) =>
     ({ ...state, ingredients: [...state.ingredients, ingredient] })
   ),
@@ -76,9 +82,14 @@ export const reducer = (state: ShoppingListState, action: Action): ShoppingListS
 export const shoppingListSelector = createFeatureSelector<ShoppingListState>(featureKey);
 
 /* Custom Selectors */
-export const selectShoppingLists = createSelector(
+export const selectShoppingListsAndLoading = createSelector(
   shoppingListSelector,
-  (state: ShoppingListState) => state.shoppingLists
+  (state: ShoppingListState) => {
+    return {
+      shoppingLists: state.shoppingLists,
+      isLoading: state.isLoading
+    };
+  }
 );
 /*
  * The reducer is a function that will take the state and the action to perform the change on the application state.

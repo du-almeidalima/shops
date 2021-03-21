@@ -94,7 +94,8 @@
 .app-loading-spinner {
   position: relative;
   top: 40%;
-  transform: translateY(-50%) scale(1);
+  left: 50%;
+  transform: scale(1);
 }
 .app-loading-spinner div { box-sizing: content-box; }
 

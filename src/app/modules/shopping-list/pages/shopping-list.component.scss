@@ -1,5 +1,10 @@
 @import "src/assets/scss/styles";
 
+.app-shopping-lists {
+  position: relative;
+  min-height: 80vh;
+}
+
 .app-shopping-lists-container {
   display: grid;
   grid-template-columns: 1fr;

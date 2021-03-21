@@ -8,7 +8,7 @@ import { environment as env } from '../../../../environments/environment';
 import { Observable } from 'rxjs';
 
 @Injectable()
-export class RecipesService {
+export class RecipesApi {
 
   private readonly BASE_URL = env.api.baseURL + env.api.recipes;
 

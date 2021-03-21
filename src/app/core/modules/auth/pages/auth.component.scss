@@ -3,10 +3,15 @@
 $padding-left: 5px;
 
 .app-login-form {
+  margin: 3rem auto;
   position: relative;
   padding: 20px 15px 0 15px;
   max-height: 80vh;
 
+  .app-login-image {
+    display: block;
+    margin: auto;
+  }
   .app-input-control {
     position: relative;
     width: 100%;

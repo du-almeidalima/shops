@@ -1,11 +1,11 @@
 <div class="row position-relative">
-  <div class="app-login-form center-content shadow rounded col-10 col-lg-6">
+  <div class="app-login-form shadow rounded col-10 col-lg-6">
     <!-- Loading Spinner -->
     <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
 
     <!-- Login Form Content -->
     <h1 class="text-center font-weight-bold">Welcome</h1>
-    <img class="center-content h-25" src='../../../../../assets/img/brand-icon.png' alt="logo">
+    <img class="app-login-image h-25" src='../../../../../assets/img/brand-icon.png' alt="logo">
     <div class="mt-4">
       <form #f="ngForm" (ngSubmit)="handleFormSubmission(f)">
         <div class="app-input-control">

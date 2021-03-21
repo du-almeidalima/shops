@@ -5,7 +5,7 @@ import {Component} from '@angular/core';
   styleUrls: ['./loading-spinner.component.scss'],
   template: `
     <div class="app-loading-spinner-wrapper">
-      <div class="app-loading-spinner center-content">
+      <div class="app-loading-spinner">
         <div></div><div></div><div></div><div></div>
         <div></div><div></div><div></div><div></div>
         <div></div><div></div><div></div><div></div>

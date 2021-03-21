@@ -7,6 +7,8 @@ import { StoreModule } from '@ngrx/store';
 import * as fromShoppingList from './store/shopping-list.reducer';
 import { SharedModule } from '../../shared/shared.module';
 import { ShoppingListCardComponent } from './components/shopping-list-card/shopping-list-card.component';
+import { EffectsModule } from '@ngrx/effects';
+import { ShoppingListEffects } from './store/shopping-list.effects';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,7 @@ import { ShoppingListCardComponent } from './components/shopping-list-card/shopp
     FormsModule,
     ShoppingListRoutesModule,
     StoreModule.forFeature(fromShoppingList.featureKey, fromShoppingList.reducer),
+    EffectsModule.forFeature([ShoppingListEffects]),
     SharedModule
   ]
 })

@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 
 import { map, switchMap, withLatestFrom } from 'rxjs/operators';
 
-import { RecipesService } from '../api/recipes.service';
+import { RecipesApi } from '../api/recipes.api';
 import * as RecipesActions from './recipes.actions';
 import * as fromRecipes from './recipes.reducer';
 
@@ -13,7 +13,7 @@ export class RecipesEffects {
   constructor(
     private actions$: Actions,
     private store: Store,
-    private recipesService: RecipesService
+    private recipesService: RecipesApi
   ) {
   }
 

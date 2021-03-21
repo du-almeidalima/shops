@@ -1,7 +1,7 @@
 import { User } from '../../../../shared/models/user.model';
 import { ResponseMessage } from '../../../../shared/models/response-message.model';
 import * as AuthActions from './auth.actions';
-import { Action, createFeatureSelector, createReducer, on } from '@ngrx/store';
+import { Action, createFeatureSelector, createReducer, createSelector, on } from '@ngrx/store';
 
 export const featureKey = 'auth';
 
@@ -31,3 +31,9 @@ export function reducer(state: AuthState, action: Action): AuthState {
 }
 
 export const authSelector = createFeatureSelector<AuthState>(featureKey);
+
+/* Custom Selectors */
+export const selectUserUID = createSelector(
+  authSelector,
+  (state) => state?.user?.id
+);
