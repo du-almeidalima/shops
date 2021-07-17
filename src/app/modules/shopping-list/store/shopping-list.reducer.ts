@@ -4,6 +4,8 @@ import { Ingredient } from '../../../shared/models/ingredient.model';
 import ShoppingList from '../../../shared/models/shopping-list';
 import * as ShoppingListActions from './shopping-list.actions';
 
+import SHOPPING_LIST_MOCK from '../../../shared/utils/mock/shopping-lists.mock';
+
 export const featureKey = 'shoppingList';
 
 /* State Structure */
