@@ -1,5 +1,11 @@
 {
-  "projects": {
-    "default": "shops"
+  "targets": {
+    "du-shopps": {
+      "hosting": {
+        "shops": [
+          "du-shopps"
+        ]
+      }
+    }
   }
 }

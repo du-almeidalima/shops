@@ -1,36 +1,36 @@
 import { NgModule } from '@angular/core';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { RouterModule, Routes } from '@angular/router';
+import { BrowserModule } from '@angular/platform-browser';
+import { RouterModule } from '@angular/router';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { EffectsModule } from '@ngrx/effects';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireAnalyticsModule } from '@angular/fire/analytics';
 
-import { SharedModule } from '../shared/shared.module';
-import { AuthInterceptor } from './services/auth.interceptor';
-import { AuthModule } from './modules/auth/auth.module';
-import { AuthComponent } from './modules/auth/pages/auth.component';
+import { environment } from '../../environments/environment';
+
+import { LayoutComponent } from './components/layout/layout.component';
 import { HeaderComponent } from './components/header/header.component';
 
-const CORE_ROUTES: Routes = [
-  { path: 'login', component: AuthComponent }
-];
 
 @NgModule({
   declarations: [
+    LayoutComponent,
     HeaderComponent
   ],
   imports: [
-    SharedModule,
-    HttpClientModule,
-    AuthModule,
-    RouterModule.forChild(CORE_ROUTES)
+    BrowserModule,
+    RouterModule,
+    StoreModule.forRoot({}, {}),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    EffectsModule.forRoot([]),
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
+    AngularFireAnalyticsModule,
   ],
   exports: [
-    HeaderComponent
-  ],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor,
-      multi: true
-    }
+    LayoutComponent
   ]
 })
 export class CoreModule {

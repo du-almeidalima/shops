@@ -1,9 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
-@import "theme/theme";
-@import "partials/app-tooltip";
 
 /* == VARIABLES == */
-$padding : 1rem;
+$padding: 1rem;
 $border-radius: 10px;
 
 /* == VIEWPORTS == */
@@ -11,7 +9,18 @@ $small: 480px;
 $medium: 768px;
 $large: 1024px;
 
-.main-container {
-  margin: auto;
-  max-width: 90vw;
+/* == FONTS == */
+@font-face {
+  font-family: "Roboto";
+  src: local("Roboto"), url("../../assets/fonts/Roboto-Regular.ttf") format("truetype");
+}
+
+* {
+  font-family: "Roboto", sans-serif;
+}
+/* == RESET == */
+*  {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }

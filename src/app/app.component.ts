@@ -1,15 +1,9 @@
-import {Component, OnInit} from '@angular/core';
-import {Store} from '@ngrx/store';
-import * as AuthActions from './core/modules/auth/store/auth.actions';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html'
+  template: `
+    <app-layout></app-layout>
+  `,
 })
-export class AppComponent implements OnInit{
-
-  constructor(private store: Store) {}
-  ngOnInit(): void {
-    this.store.dispatch(AuthActions.autoLogin());
-  }
-}
+export class AppComponent { }
