@@ -5,6 +5,9 @@ import { ListComponent } from './list.component';
 import { IndexComponent } from './pages/index/index.component';
 import { CreateComponent } from './pages/create/create.component';
 import { FulfillComponent } from './pages/fulfill/fulfill.component';
+import { ListHeaderComponent } from './components/list-header/list-header.component';
+import { ListContentComponent } from './components/list-content/list-content.component';
+import { SharedModule } from '../../shared/shared.module';
 
 
 @NgModule({
@@ -12,10 +15,13 @@ import { FulfillComponent } from './pages/fulfill/fulfill.component';
     ListComponent,
     IndexComponent,
     CreateComponent,
-    FulfillComponent
+    FulfillComponent,
+    ListHeaderComponent,
+    ListContentComponent
   ],
   imports: [
-    ListRoutingModule
+    ListRoutingModule,
+    SharedModule
   ]
 })
 export class ListModule { }

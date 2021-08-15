@@ -1,23 +1,22 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CreateComponent } from './create.component';
-import { ListHeaderComponent } from '../../components/list-header/list-header.component';
+import { ListHeaderComponent } from './list-header.component';
 import { SharedModule } from '../../../../shared/shared.module';
 
-describe('CreateComponent', () => {
-  let component: CreateComponent;
-  let fixture: ComponentFixture<CreateComponent>;
+describe('ListHeaderComponent', () => {
+  let component: ListHeaderComponent;
+  let fixture: ComponentFixture<ListHeaderComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [CreateComponent, ListHeaderComponent],
+      declarations: [ListHeaderComponent],
       imports: [SharedModule]
     })
       .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CreateComponent);
+    fixture = TestBed.createComponent(ListHeaderComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

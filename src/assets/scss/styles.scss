@@ -1,26 +1,38 @@
 /* You can add global styles to this file, and also import other style files */
-
-/* == VARIABLES == */
-$padding: 1rem;
-$border-radius: 10px;
-
-/* == VIEWPORTS == */
-$small: 480px;
-$medium: 768px;
-$large: 1024px;
-
 /* == FONTS == */
 @font-face {
   font-family: "Roboto";
   src: local("Roboto"), url("../../assets/fonts/Roboto-Regular.ttf") format("truetype");
 }
 
+/* == VARIABLES == */
+$rootFontSize: 10px;
+$borderRadius: 1rem;
+$backgroundColor: hsl(0, 0%, 90%);
+
+/* == VIEWPORTS == */
+$small: 480px;
+$medium: 768px;
+$large: 1024px;
+
 * {
   font-family: "Roboto", sans-serif;
 }
+
 /* == RESET == */
-*  {
+*,
+*::after,
+*::before {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+/* == GLOBAL STYLES == */
+html {
+  font-size: $rootFontSize;
+
+  body {
+    background-color: $backgroundColor;
+  }
 }

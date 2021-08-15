@@ -1,10 +1,7 @@
-<app-header></app-header>
+<div class='container'>
+  <app-header></app-header>
 
-<main>
-  <ul>
-    <li *ngFor='let item of (items | async)'>
-      {{item.name}}
-    </li>
-  </ul>
-  <router-outlet></router-outlet>
-</main>
+  <main>
+    <router-outlet></router-outlet>
+  </main>
+</div>

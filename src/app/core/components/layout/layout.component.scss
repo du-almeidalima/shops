@@ -1,0 +1,15 @@
+@use "src/assets/scss/styles";
+
+.container {
+  background-color: white;
+  height: 100vh;
+}
+
+@media screen and (min-width: styles.$medium){
+  .container {
+    margin: 3rem auto 0 auto;
+    width: 60vw;
+    height: 80vh;
+    box-shadow: 0 .2rem .4rem rgba(0,0,0,.1);
+  }
+}
