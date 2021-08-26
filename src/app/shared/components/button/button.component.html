@@ -1,3 +1,3 @@
-<button (click)="clickHandler()">
+<button #buttonElement class='button' (click)='clickHandler()' [ngStyle]='styles'>
   <ng-content></ng-content>
 </button>

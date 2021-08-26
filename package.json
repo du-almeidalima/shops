@@ -23,7 +23,6 @@
     "@ngrx/effects": "^12.4.0",
     "@ngrx/store": "^12.4.0",
     "@ngrx/store-devtools": "^12.4.0",
-    "feather-icons": "^4.28.0",
     "firebase": "^7.0 || ^8.0",
     "rxjs": "~6.6.7",
     "tslib": "^2.3.1",

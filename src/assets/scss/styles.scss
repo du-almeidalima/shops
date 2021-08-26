@@ -1,4 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+@use 'theme/theme';
+
 /* == FONTS == */
 @font-face {
   font-family: "Roboto";
@@ -8,7 +10,6 @@
 /* == VARIABLES == */
 $rootFontSize: 10px;
 $borderRadius: 1rem;
-$backgroundColor: hsl(0, 0%, 90%);
 
 /* == VIEWPORTS == */
 $small: 480px;
@@ -33,6 +34,6 @@ html {
   font-size: $rootFontSize;
 
   body {
-    background-color: $backgroundColor;
+    background-color: theme.$backgroundColor;
   }
 }

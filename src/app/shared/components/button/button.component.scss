@@ -1,0 +1,15 @@
+$componentName: 'button';
+
+.#{$componentName} {
+  padding: .5rem 1rem;
+  cursor: pointer;
+}
+
+.#{$componentName}__rounded {
+  border-radius: 5px;
+}
+
+.#{$componentName}__basic {
+  background: transparent;
+  border: 0;
+}

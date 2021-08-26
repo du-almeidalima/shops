@@ -1,4 +1,8 @@
-<div>
-  <input type='text' name='listName' placeholder='My List Name...'>
-  <app-button (onClick)='inviteHandler()'></app-button>
+<div class='list-header'>
+  <div class='list-header__input' contenteditable (input)='inputHandler($event)'>
+    My List Name...
+  </div>
+  <app-button class='list-header__add-user' type='basic' (onClick)='inviteHandler()'>
+    <i class='ti ti-user-plus list-header__add-user-icon'></i>
+  </app-button>
 </div>

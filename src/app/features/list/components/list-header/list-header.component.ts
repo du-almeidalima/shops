@@ -12,6 +12,10 @@ export class ListHeaderComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  public inputHandler = (e: any) => {
+    console.log(e.target.textContent);
+  }
+
   public inviteHandler = () => {
     console.log('CLICKED');
   }

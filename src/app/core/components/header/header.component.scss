@@ -2,14 +2,15 @@
 
 .AppHeader {
   display: flex;
+  align-items: center;
   justify-content: space-between;
   width: 100%;
-  height: 4rem;
-  padding: 0.75rem 1rem;
-  border-bottom: theme.$black 3px solid;
+  height: 6rem;
+  padding: 1rem 1.5rem;
+  border-bottom: theme.$black 2px solid;
 
   .app-title {
-    font-size: 1.75rem;
+    font-size: 3rem;
     font-weight: bold;
   }
 

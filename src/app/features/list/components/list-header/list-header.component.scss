@@ -1,2 +1,34 @@
-@use "src/assets/scss/styles";
+@use "src/assets/scss/theme/theme";
 
+$componentName: 'list-header';
+
+.#{$componentName} {
+  display: flex;
+  gap: 2rem;
+  justify-content: space-between;
+  width: 100%;
+
+  & .#{$componentName}__input {
+    flex: 1;
+    min-width: 0;
+    font-size: 3rem;
+    outline: none;
+    border: 0;
+    box-shadow: 0 -1px 0 inset gray;
+
+    &:is(:focus, :active) {
+      box-shadow: 0 -2px 0 inset black;
+    }
+  }
+
+  & .#{$componentName}__add-user {
+    display: inline-block;
+
+    & .#{$componentName}__add-user-icon {
+      font-size: 3.25rem;
+    }
+    &:is(:active, :target) .#{$componentName}__add-user-icon {
+      color: darken(theme.$primary, 30%)
+    }
+  }
+}
